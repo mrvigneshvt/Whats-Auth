@@ -1,0 +1,72 @@
+import express from "express";
+import {
+  connectToWhatsapp,
+  privateMessage,
+  sendMessageToUser,
+} from "./server.js";
+
+const port = 3000;
+
+const server = express();
+
+server.use(express.json());
+
+connectToWhatsapp();
+
+// POST Endpoint to send messages
+server.post("/send-message", async (req, res) => {
+  try {
+    const body = req.body;
+
+    // Validate input
+    if (!body.user || !body.text) {
+      return res.status(400).json({
+        success: false,
+        message: "Both 'user' and 'message' fields are required.",
+      });
+    }
+
+    if (body.text.length < 1) {
+      return res.status(400).json({
+        success: false,
+        message: "Message Length should be Greater than 1",
+      });
+    }
+
+    // Send message via WhatsApp client
+
+    body.text =
+      body.text +
+      "\n\n**This is a Private Non Profit Project API Called made by VIXYZ**";
+    const isSent = await sendMessageToUser(body);
+
+    if (!isSent) {
+      return res.status(400).json({
+        success: false,
+        message: `Message Not sent to ${body.user}`,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: `Message sent to ${body.user}`,
+      });
+
+      setTimeout(async () => {
+        console.log("editing kicked....");
+        await privateMessage(body, isSent);
+      }, 6000);
+    }
+  } catch (error) {
+    console.error("Error sending message:", error.message);
+    res.status(500).json({
+      success: false,
+      message: "Failed to send message.",
+      error: error.message,
+    });
+  }
+});
+
+// Start the Express server
+server.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
