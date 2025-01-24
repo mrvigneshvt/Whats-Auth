@@ -52,9 +52,11 @@ server.post("/send-message", async (req, res) => {
       });
 
       setTimeout(async () => {
-        console.log("editing kicked....");
+        console.log(
+          "Message Edited For Privacy REASON... \n\n\nFrom WhatsAuth made by VIXYZ"
+        );
         await privateMessage(body, isSent);
-      }, 6000);
+      }, 60000 + 60000);
     }
   } catch (error) {
     console.error("Error sending message:", error.message);
