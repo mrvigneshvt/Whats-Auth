@@ -6,7 +6,8 @@ import {
 } from "./server.js";
 
 const port = 3000;
-const myIp = "::ffff:109.123.237.36";
+const ip = "109.123.237.36";
+const myIp = `::ffff:${ip}`;
 
 const server = express();
 
@@ -81,5 +82,5 @@ server.post("/send-message", async (req, res, next) => {
 
 // Start the Express server
 server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://${ip}:${port}`);
 });
