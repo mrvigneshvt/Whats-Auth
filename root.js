@@ -6,7 +6,7 @@ import {
 } from "./server.js";
 
 const port = 3000;
-const myIp = "109.123.237.36";
+const myIp = "::ffff:109.123.237.36";
 
 const server = express();
 
