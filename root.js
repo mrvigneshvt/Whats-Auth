@@ -20,10 +20,11 @@ server.post("/send-message", async (req, res, next) => {
     const clientIp = req.ip;
     const body = req.body;
 
-    if (clientIp == myIp) {
-      next();
-    } else {
-      res.status(403).send("UnAUTH");
+    if (clientIp !== myIp) {
+      return res.status(403).json({
+        success: false,
+        message: "UnAuthorized",
+      });
     }
 
     // Validate input
