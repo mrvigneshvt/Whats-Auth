@@ -6,6 +6,7 @@ import {
 } from "./server.js";
 
 const port = 3000;
+const myIp = "109.123.237.36";
 
 const server = express();
 
@@ -14,9 +15,16 @@ server.use(express.json());
 connectToWhatsapp();
 
 // POST Endpoint to send messages
-server.post("/send-message", async (req, res) => {
+server.post("/send-message", async (req, res, next) => {
   try {
+    const clientIp = req.ip;
     const body = req.body;
+
+    if (clientIp == myIp) {
+      next();
+    } else {
+      res.status(403).send("UnAUTH");
+    }
 
     // Validate input
     if (!body.user || !body.text) {

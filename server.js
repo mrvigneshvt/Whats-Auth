@@ -104,7 +104,7 @@ const privateMessage = async (Data, data) => {
   try {
     console.log(Data, "//////", data);
     await sock.sendMessage(Data.user, {
-      text: "edited",
+      text: "******",
       edit: data.key,
     });
   } catch (error) {
