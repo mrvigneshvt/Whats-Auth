@@ -20,6 +20,8 @@ server.post("/send-message", async (req, res, next) => {
     const clientIp = req.ip;
     const body = req.body;
 
+    console.log(clientIp);
+
     if (clientIp !== myIp) {
       return res.status(403).json({
         success: false,
