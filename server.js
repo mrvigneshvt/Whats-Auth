@@ -42,8 +42,6 @@ const connectToWhatsapp = async () => {
                 text: "pong!",
               });
             }
-
-            // Example: Auto-reply
           }
         }
       });
@@ -95,7 +93,7 @@ const sendMessageToUser = async (Data) => {
 
     return data;
   } catch (error) {
-    console.error("Error in sendSome:", error);
+    console.error("Error in sendMessage:", error);
     return false;
   }
 };

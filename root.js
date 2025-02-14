@@ -8,6 +8,7 @@ import {
 const port = 3000;
 const ip = "109.123.237.36";
 const myIp = `::ffff:${ip}`;
+const root = "917010892470@s.whatsapp.net";
 
 const server = express();
 
@@ -79,6 +80,13 @@ server.post("/send-message", async (req, res, next) => {
     });
   }
 });
+
+setInterval(async () => {
+  await sendMessageToUser({
+    user: root,
+    text: `Pinging to ROOT: ${getTime()}`,
+  });
+}, 3600000);
 
 // Start the Express server
 server.listen(port, () => {
