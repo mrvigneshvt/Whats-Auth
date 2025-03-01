@@ -6,7 +6,7 @@ import {
 } from "./server.js";
 
 const port = 3000;
-const ip = "109.123.237.36";
+const ip = "109.123.237.36" || '223.178.85.168';
 const myIp = `::ffff:${ip}`;
 const root = "917010892470@s.whatsapp.net";
 
