@@ -25,7 +25,7 @@ server.post("/send-message", async (req, res, next) => {
 
     console.log(clientIp);
 
-    if (!myIp.incluides(clientIp)) {
+    if (!myIp.includes(clientIp)) {
       return res.status(403).json({
         success: false,
         message: "UnAuthorized",
