@@ -8,7 +8,7 @@ import {
 const port = 3000;
 const ip = ["109.123.237.36" , '223.178.85.168'] //1 is localhost (Home)
 
-const myIp = [`::ffff:${ip[0]`,`::ffff:${ip[1]`];
+const myIp = [`::ffff:${ip[0]}`,`::ffff:${ip[1]}`];
 const root = "917010892470@s.whatsapp.net";
 
 const server = express();
